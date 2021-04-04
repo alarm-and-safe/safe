@@ -45,7 +45,8 @@ bool set_safe_pass = false;
 char MasterTime[Password_Length] = "AAAA";
 //master code to manage time
 byte data_count = 0, time_count = 0, incorrect_count = 0, two_count = 0, four_count = 0;
-//various counts used to manipulate arrays byte action_in = 0; 
+//various counts used to manipulate arrays 
+byte action_in = 0; 
 //used as a boolean to know if the action has been entered char customKey; 
 //key pressed by user from keypad const byte ROWS = 4; //keypad has 4 rows const byte COLS = 4; //keypad has 4 columns 
 char hexaKeys[ROWS][COLS] = {
