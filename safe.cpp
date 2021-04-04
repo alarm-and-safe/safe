@@ -478,9 +478,7 @@ void settingSafe() {
         }
         void printAttemptsLCD() {
           // most recent = mr = attempt row -1
-          // if mr >= 3 && mr <= 49 then the last 4 attempts are indices mr, mr - 1, mr - 
-          2,
-          and mr - 2 // if mr = 2 then the last 4 attempts are indices 2, 1, 0, and 49
+          // if mr >= 3 && mr <= 49 then the last 4 attempts are indices mr, mr - 1, mr - 2, and mr - 2 // if mr = 2 then the last 4 attempts are indices 2, 1, 0, and 49
           // if mr = 1 then the last 4 attempts are indices 1, 0, 49, and 48 // if mr = 0 then the last 4 attempts are indices 0, 49, 48, and 47 int mr = attempt_row - 1;
           // print the last 4 attempts on the LCD screen for 3 seconds each starting with most recent 
           for (int i = 0; i < 4; i++) {
