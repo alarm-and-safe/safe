@@ -30,7 +30,7 @@ char MasterSafe3[Password_Length] = "0000";
 //master security password. change this to change password. Second Stored char 
 
 Data[Password_Length];
-MasterSecurity[Password_Length] = "5678";
+char MasterSecurity[Password_Length] = "5678";
 //tracks the password being entered by user 
 char action = 'N';
 //the action chosen by the user (i.e. the 5th key entered) 
