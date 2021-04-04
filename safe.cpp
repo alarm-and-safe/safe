@@ -29,7 +29,7 @@ char MasterSafe3[Password_Length] = "0000";
 //master safe password. change this to change the password. First Stored char MasterSecurity[Password_Length] = "5678"; 
 //master security password. change this to change password. Second Stored char 
 
-Data[Password_Length];
+char Data[Password_Length];
 char MasterSecurity[Password_Length] = "5678";
 //tracks the password being entered by user 
 char action = 'N';
@@ -93,10 +93,12 @@ byte colPins[COLS] = {
 String attempts[50][2];
 // track the attempts
 // column 1 = type of access (incorrect, unlock, lock, off, home, away, panic)
-// column 2 = time of access (hour.minute.second.day.month.year) int attempt_row = 0;
+// column 2 = time of access (hour.minute.second.day.month.year) 
+int attempt_row = 0;
 // a count for the current row to edit
 char v_min[3], v_hr[3], v_sec[3], v_day[3], v_month[3], v_yr[5];
-// arrays for time elements time_t backlight_timer;
+// arrays for time elements 
+time_t backlight_timer;
 //library methods that set up the keypad and the lcd screen
 Keypad customKeypad = Keypad(makeKeymap(hexaKeys), rowPins, colPins, ROWS, COLS);
 LiquidCrystal_I2C lcd(0x27, 16, 2);
@@ -238,7 +240,8 @@ void loop() {
         Serial.println("Invalid Request");
       }
     }
-    if (strcmp(Data, MasterSecurity) == 0) { //passcode is for security system incorrect_count = 0;
+    if (strcmp(Data, MasterSecurity) == 0) { //passcode is for security system 
+      incorrect_count = 0;
       Serial.println("Correct, Security");
       if (action == 'A') { // turn the security to off       
         recordAttempt(3);
@@ -250,7 +253,9 @@ void loop() {
         digitalWrite(fob_off, LOW);
         delay(2000);
       }
-      if (action == 'B') { // turn the security to home       recordAttempt(4);       lcd.clear();
+      if (action == 'B') { // turn the security to home       
+        recordAttempt(4);       
+        lcd.clear();
         lcd.print("Security Home");
         Serial.println("Security Home");
         digitalWrite(fob_home, HIGH);
@@ -268,7 +273,9 @@ void loop() {
         digitalWrite(fob_away, LOW);
         delay(2000);
       }
-      if (action == 'D') { // turn the security to panic       recordAttempt(6);       lcd.clear();
+      if (action == 'D') { // turn the security to panic       
+        recordAttempt(6);       
+        lcd.clear();
         lcd.print("Security Panic");
         Serial.println("Security Panic");
         digitalWrite(fob_panic, HIGH);
@@ -379,9 +386,14 @@ void settingSafe() {
         }
         //function for user to set the current time 
         void settingTime() {
-          if (time_count == 0 || time_count == 1) { //set the hour     v_hr[two_count] = customKey;     time_count ++;     two_count ++;
+          if (time_count == 0 || time_count == 1) { //set the hour     
+            v_hr[two_count] = customKey;     
+            time_count ++;     
+            two_count ++;
             if (two_count == 2) two_count = 0;
-          } else if (time_count == 2 || time_count == 3) { //set the minute       v_min[two_count] = customKey;       time_count ++;
+          } else if (time_count == 2 || time_count == 3) { //set the minute       
+            v_min[two_count] = customKey;       
+            time_count ++;
             two_count++;
             if (two_count == 2) two_count = 0;
           } else if (time_count == 4 || time_count == 5) { //set the second       
@@ -428,7 +440,8 @@ void settingSafe() {
           }
           return;
         }
-        //function to record an attempt (type and day/time) void recordAttempt(int type)
+        //function to record an attempt (type and day/time) 
+        void recordAttempt(int type)
         {
           String curr_date = createDate();
           if (attempt_row == 50) attempt_row = 0;
