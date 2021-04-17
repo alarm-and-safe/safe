@@ -7,10 +7,10 @@
 #include <EEPROM.h>
 //THIS IS A FAKE PROTOTYPE WITHOUT PHOB AND IC2LCD NO BACKLIGHT FUNCTIONS
 
-#define fob_off 5 // WHITE
-#define fob_home 6 // GREEN
-#define fob_away 7 // YELLOW
-#define fob_panic 8 //RED
+#define fob_off 7 // WHITE
+#define fob_home 8 // GREEN
+#define fob_away 6 // YELLOW
+#define fob_panic 5 //RED
 #define Password_Length 5
 
 int delay1 =1000;
@@ -28,16 +28,8 @@ byte rowPins[ROWS] = {A3, A2, A1, A0};
 byte colPins[COLS] = {13, 12, 11, 10}; 
 Keypad customKeypad = Keypad(makeKeymap(hexaKeys), rowPins, colPins, ROWS, COLS);
  
-
-int rs=22;
-int en=24;
-int d4=23;
-int d5=25;
-int d6=27;
-int d7=29;
 LiquidCrystal_I2C lcd(0x27,20,4);
 
-int buzzPin=42;
 int timing=900;
 int speedPin= 3;
 int motor_fwd =2;
